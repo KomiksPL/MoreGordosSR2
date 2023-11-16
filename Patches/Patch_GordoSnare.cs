@@ -21,7 +21,7 @@ public static class Patch_GordoSnare
     {
         if (!id.TryCast<SlimeDefinition>())
         {
-            GameObject bait = __instance.bait;
+            GameObject bait = __instance.Bait;
             RemoveComponents<Collider>(bait, __instance);
             RemoveComponent<DragFloatReactor>(bait, __instance);
             RemoveComponent<Rigidbody>(bait, __instance);
@@ -53,7 +53,7 @@ public static class Patch_GordoSnare
     public static bool OnTriggerEnter(GordoSnare __instance, Collider col)
     {
         Identifiable component = col.GetComponent<Identifiable>();
-        if (!col.isTrigger && __instance.bait == null && !__instance.HasSnaredGordo())
+        if (!col.isTrigger && __instance.Bait == null && !__instance.HasSnaredGordo())
         {
             if (component == null)
             {
@@ -74,10 +74,10 @@ public static class Patch_GordoSnare
     private static bool AttachBait(Collider col, GordoSnare gordoSnare)
     {
         Identifiable component = col.GetComponent<Identifiable>();
-        bool flag = gordoSnare.baitAttachedFx != null;
+        bool flag = gordoSnare.BaitAttachedFx != null;
         if (flag)
         {
-            SRBehaviour.SpawnAndPlayFX(gordoSnare.baitAttachedFx, gordoSnare.gameObject);
+            SRBehaviour.SpawnAndPlayFX(gordoSnare.BaitAttachedFx, gordoSnare.gameObject);
         }
         Destroyer.DestroyActor(col.gameObject, "GordoSnare.OnTriggerEnter", false);
         gordoSnare.AttachBait(component.identType);

@@ -8,31 +8,31 @@ public class Patch_GordoRewardsBase
 {
     public static void Prefix(GordoRewardsBase __instance)
     {
-        if (__instance.eat == null) return;
-        if (__instance.eat.snareModel == null) return;
-        if (__instance.eat.snareModel.gordoTypeId == null) return;
+        if (__instance._eat == null) return;
+        if (__instance._eat.SnareModel == null) return;
+        if (__instance._eat.SnareModel.gordoTypeId == null) return;
         
-        if (__instance.eat.snareModel.gordoTypeId == EntryPoint.FireGordo)
+        if (__instance._eat.SnareModel.gordoTypeId == EntryPoint.FireGordo)
         {
-            __instance.eat.slimeDefinition.prefab = EntryPoint.FireDef.prefab;
+            __instance._eat.SlimeDefinition.prefab = EntryPoint.FireDef.prefab;
         }
-        if (__instance.eat.snareModel.gordoTypeId == EntryPoint.YolkyGordo)
+        if (__instance._eat.SnareModel.gordoTypeId == EntryPoint.YolkyGordo)
         {
-            __instance.eat.slimeDefinition.prefab = EntryPoint.YolkyDef.prefab;
+            __instance._eat.SlimeDefinition.prefab = EntryPoint.YolkyDef.prefab;
         }
     }
     public static void Postfix(GordoRewardsBase __instance)
     {
-        if (__instance.eat == null) return;
-        if (__instance.eat.snareModel == null) return;
-        if (__instance.eat.snareModel.gordoTypeId == null) return;
-        if (__instance.eat.snareModel.gordoTypeId == EntryPoint.FireGordo)
+        if (__instance._eat == null) return;
+        if (__instance._eat.SnareModel == null) return;
+        if (__instance._eat.SnareModel.gordoTypeId == null) return;
+        if (__instance._eat.SnareModel.gordoTypeId == EntryPoint.FireGordo)
         {
-            __instance.eat.slimeDefinition.prefab = EntryPoint.PinkDef.prefab;
+            __instance._eat.SlimeDefinition.prefab = EntryPoint.PinkDef.prefab;
         }
-        if (__instance.eat.snareModel.gordoTypeId == EntryPoint.YolkyGordo)
+        if (__instance._eat.SnareModel.gordoTypeId == EntryPoint.YolkyGordo)
         {
-            __instance.eat.slimeDefinition.prefab = EntryPoint.PinkDef.prefab;
+            __instance._eat.SlimeDefinition.prefab = EntryPoint.PinkDef.prefab;
         }
     }
 }

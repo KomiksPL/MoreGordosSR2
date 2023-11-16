@@ -20,7 +20,7 @@ public static class Patch_GordoEat
                 return false;
             }
             Identifiable identifiable = col.GetComponent<Identifiable>();
-            if (identifiable != null && WaterGroup.IsMember(identifiable.identType) && !__instance.eating.Contains(col.gameObject))
+            if (identifiable != null && WaterGroup.IsMember(identifiable.identType) && !__instance._eating.Contains(col.gameObject))
             {
                 __instance.DoEat(col.gameObject);
                 __instance.SetEatenCount(__instance.GetEatenCount() + 1);

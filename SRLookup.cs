@@ -10,6 +10,8 @@ public static class SRLookup
     {
         RuntimePrefab = new GameObject(nameof(RuntimePrefab));
         RuntimePrefab.hideFlags |= HideFlags.HideAndDontSave;
+        Object.DontDestroyOnLoad(RuntimePrefab);
+
         RuntimePrefab.SetActive(false);
     }
     public static T Get<T>(string name) where T : UnityEngine.Object
