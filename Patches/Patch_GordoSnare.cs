@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.Regions;
+using MelonLoader;
 using UnityEngine;
 
 namespace MoreGordosMod.Patches;
@@ -19,7 +20,7 @@ public static class Patch_GordoSnare
     [HarmonyPatch(nameof(AttachBait)), HarmonyPrefix]
     public static void AttachBait(GordoSnare __instance, IdentifiableType id)
     {
-        if (!id.TryCast<SlimeDefinition>())
+        if (id.TryCast<SlimeDefinition>())
         {
             GameObject bait = __instance.Bait;
             RemoveComponents<Collider>(bait, __instance);
