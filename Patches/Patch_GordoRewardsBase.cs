@@ -4,7 +4,7 @@ using Il2Cpp;
 namespace MoreGordosMod.Patches;
 
 [HarmonyPatch(typeof(GordoRewardsBase), "GiveRewards")]
-public class Patch_GordoRewardsBase
+public static class Patch_GordoRewardsBase
 {
     public static void Prefix(GordoRewardsBase __instance)
     {

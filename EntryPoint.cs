@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 namespace MoreGordosMod;
 public class EntryPoint : MelonMod
 {
-	public static List<IdentifiableType> CustomResources = new List<IdentifiableType>();
+	public static Il2CppSystem.Collections.Generic.List<IdentifiableType> CustomResources = new Il2CppSystem.Collections.Generic.List<IdentifiableType>();
 	public static IdentifiableType LuckyGordo;
 	public static IdentifiableType FireGordo;
 	public static IdentifiableType YolkyGordo;
@@ -21,16 +21,12 @@ public class EntryPoint : MelonMod
 	public static SlimeDefinition FireDef;
 	public static SlimeDefinition YolkyDef;
 	public static SlimeDefinition PinkDef;
-
-
-
-	
 	public static Assembly execAssembly = Assembly.GetExecutingAssembly();
 
 
     public override void OnInitializeMelon()
     {
-        SystemContext.IsModded = true;
+	    SystemContext.IsModded = true;
         LuckyGordo = CreateIdentifiableGordo("LuckyGordo", Color.white, null);
         FireGordo = CreateIdentifiableGordo("FireGordo", Color.white, null);
         YolkyGordo = CreateIdentifiableGordo("YolkyGordo", Color.white, null);
@@ -44,6 +40,7 @@ public class EntryPoint : MelonMod
         
 	    if (!sceneName.Equals("GameCore") || activated)
 		    return;
+	    
 	    activated = true;
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("StrangeDiamondCraft"));
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("DeepBrineCraft"));
@@ -60,10 +57,7 @@ public class EntryPoint : MelonMod
 	    FireDef = SRLookup.Get<SlimeDefinition>("Fire"); 
 	    YolkyDef = SRLookup.Get<SlimeDefinition>("Yolky");
 	    PinkDef = SRLookup.Get<SlimeDefinition>("Yolky");
-
-
-
-	    var slimeFire = SRLookup.Get<GameObject>("slimeFire");
+	    
 	    LookupDirector lookupDirector = SRSingleton<GameContext>.Instance.LookupDirector;
 	    GameObject gordoLucky = SRLookup.CopyPrefab(SRLookup.Get<GameObject>("gordoTangle"));
 	    gordoLucky.name = "gordoLucky";
@@ -73,7 +67,7 @@ public class EntryPoint : MelonMod
 	    GameObject flowerObj = gordoLucky.transform.Find("Vibrating/bone_root/bone_slime/bone_core/bone_jiggle_top/bone_skin_top/Flower").gameObject;
 	    flowerObj.SetActive(false);
 	    Object.DestroyImmediate(flowerObj.GetComponent<BoxCollider>());
-	    Object.DestroyImmediate(flowerObj.GetComponent<MeshCollider>());
+    	    Object.DestroyImmediate(flowerObj.GetComponent<MeshCollider>());
 	    
 	    GameObject luckycat_coin = gordoLucky.transform.Find("Vibrating/bone_root/bone_slime/luckycat_coin_LOD1").gameObject;
 	    luckycat_coin.GetComponent<MeshFilter>().sharedMesh = SRLookup.Get<Mesh>("luckycat_coin_LOD0");
@@ -89,8 +83,6 @@ public class EntryPoint : MelonMod
 	    LuckyGordo.localizedName = LocalizationUtil.CreateByKey("Pedia", "t.lucky_gordo");
 	    LuckyGordo.prefab.GetComponent<GordoIdentifiable>().identType = LuckyGordo;
 	    LuckyGordo.prefab.hideFlags |= HideFlags.HideAndDontSave;
-	    //lookupDirector.gordoDict.Add(LuckyGordo, LuckyGordo.prefab);
-	    //lookupDirector.gordoEntries.items.Add(LuckyGordo.prefab);
 	    
 	    var gordoPuddle = SRLookup.CopyPrefab(pinkGordo.prefab);
 	    gordoPuddle.name = "gordoPuddle";
@@ -168,7 +160,6 @@ public class EntryPoint : MelonMod
 	    YolkyGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = tabbyDef;
 	    lookupDirector.gordoDict.Add(YolkyGordo, gordoYolky);
 	    lookupDirector.gordoEntries.items.Add(gordoYolky);
-        
     }
 
     public static IdentifiableType CreateIdentifiableGordo(string gordoName, Color color, Sprite icon)

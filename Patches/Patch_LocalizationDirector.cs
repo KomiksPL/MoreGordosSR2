@@ -8,7 +8,7 @@ using UnityEngine.Localization.Tables;
 namespace MoreGordosMod.Patches;
 
 [HarmonyPatch(typeof(LocalizationDirector), "LoadTables")]
-public class Patch_LocalizationDirector
+public static class Patch_LocalizationDirector
 {
     private static IEnumerator LoadTable(LocalizationDirector director)
     {
@@ -23,8 +23,6 @@ public class Patch_LocalizationDirector
         StringTable UI = director.Tables["UI"];
         UI.AddEntry("m.foodgroup.nontarrgold_slimes", "Slimes and Ranchers");
     }
-
-    // Token: 0x06000007 RID: 7 RVA: 0x00002091 File Offset: 0x00000291
     public static void Postfix(LocalizationDirector __instance)
     {
         MelonCoroutines.Start(LoadTable(__instance));

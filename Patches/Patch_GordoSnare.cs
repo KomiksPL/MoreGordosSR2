@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.Regions;
-using MelonLoader;
 using UnityEngine;
 
 namespace MoreGordosMod.Patches;

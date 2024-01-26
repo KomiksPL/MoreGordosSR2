@@ -15,10 +15,10 @@
         <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppInterop.Common">
-        <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+        <HintPath>..\..\..\Il2cppModding\Il2CppInterop\Il2CppInterop.HarmonySupport\bin\Debug\net6.0\Il2CppInterop.Common.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppInterop.Runtime">
-        <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+        <HintPath>..\..\..\Il2cppModding\Il2CppInterop\Il2CppInterop.HarmonySupport\bin\Debug\net6.0\Il2CppInterop.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
