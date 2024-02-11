@@ -16,7 +16,7 @@ public static class Patch_Damager
             GordoEat component2 = __instance.GetComponent<GordoEat>();
             if (component2.EatFX != null)
             {
-                SRBehaviour.SpawnAndPlayFX(component2.EatFX, gameObj.transform.position, gameObj.transform.localRotation);
+                FXHelpers.SpawnAndPlayFX(component2.EatFX, gameObj.transform.position, gameObj.transform.localRotation);
             }
             if (component2.EatCue != null)
             {

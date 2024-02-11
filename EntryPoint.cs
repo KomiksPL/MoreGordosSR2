@@ -8,7 +8,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using Object = UnityEngine.Object;
 
-[assembly: MelonInfo(typeof(MoreGordosMod.EntryPoint), "MoreGordos", "1.0.5", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/4")]
+[assembly: MelonInfo(typeof(MoreGordosMod.EntryPoint), "MoreGordos", "1.0.6", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/4")]
 namespace MoreGordosMod;
 public class EntryPoint : MelonMod
 {

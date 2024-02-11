@@ -77,7 +77,7 @@ public static class Patch_GordoSnare
         bool flag = gordoSnare.BaitAttachedFx != null;
         if (flag)
         {
-            SRBehaviour.SpawnAndPlayFX(gordoSnare.BaitAttachedFx, gordoSnare.gameObject);
+            FXHelpers.SpawnAndPlayFX(gordoSnare.BaitAttachedFx, gordoSnare.gameObject);
         }
         Destroyer.DestroyActor(col.gameObject, "GordoSnare.OnTriggerEnter", false);
         gordoSnare.AttachBait(component.identType);
