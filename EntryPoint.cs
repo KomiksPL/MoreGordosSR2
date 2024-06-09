@@ -8,7 +8,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using Object = UnityEngine.Object;
 
-[assembly: MelonInfo(typeof(MoreGordosMod.EntryPoint), "MoreGordos", "1.0.6", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/4")]
+[assembly: MelonInfo(typeof(MoreGordosMod.EntryPoint), "MoreGordos", "1.0.7", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/4")]
 namespace MoreGordosMod;
 public class EntryPoint : MelonMod
 {
@@ -37,7 +37,7 @@ public class EntryPoint : MelonMod
     }
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
-        
+        MelonLogger.Msg("?");
 	    if (!sceneName.Equals("GameCore") || activated)
 		    return;
 	    
@@ -47,7 +47,7 @@ public class EntryPoint : MelonMod
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("LavaDustCraft"));
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("SunSapCraft"));
 	    StringTable stringTable = SRSingleton<SystemContext>.Instance.LocalizationDirector.Tables["UI"];
-	    SRLookup.Get<IdentifiableTypeGroup>("EdibleSlimeGroup").localizedName = new LocalizedString(stringTable.SharedData.TableCollectionNameGuid, stringTable.GetEntry("m.foodgroup.tarr").SharedEntry.Id);
+	    SRLookup.Get<IdentifiableTypeGroup>("EdibleSlimeGroup")._localizedName = new LocalizedString(stringTable.SharedData.TableCollectionNameGuid, stringTable.GetEntry("m.foodgroup.tarr").SharedEntry.Id);
 	    IdentifiableType pinkGordo = SRLookup.Get<IdentifiableType>("PinkGordo");
 	    
 	    SlimeDefinition luckyDef = SRLookup.Get<SlimeDefinition>("Lucky");
@@ -96,8 +96,8 @@ public class EntryPoint : MelonMod
 	    PuddleGordo.prefab.GetComponent<GordoIdentifiable>().identType = PuddleGordo;
 	    PuddleGordo.prefab.hideFlags |= HideFlags.HideAndDontSave;
 
-	    lookupDirector.gordoDict.Add(PuddleGordo, gordoPuddle);
-	    lookupDirector.gordoEntries.items.Add(gordoPuddle);
+	    lookupDirector._gordoDict.Add(PuddleGordo, gordoPuddle);
+	    lookupDirector._gordoEntries.items.Add(gordoPuddle);
 	    
 	    
 	    var gordoFire = SRLookup.CopyPrefab(pinkGordo.prefab);
@@ -113,8 +113,8 @@ public class EntryPoint : MelonMod
 
 	    
 	    
-	    lookupDirector.gordoDict.Add(FireGordo, gordoFire);
-	    lookupDirector.gordoEntries.items.Add(gordoFire);
+	    lookupDirector._gordoDict.Add(FireGordo, gordoFire);
+	    lookupDirector._gordoEntries.items.Add(gordoFire);
 
 
 	    var gordoTarr = SRLookup.CopyPrefab(pinkGordo.prefab);
@@ -140,8 +140,8 @@ public class EntryPoint : MelonMod
 	    TarrGordo.prefab.GetComponent<GordoIdentifiable>().identType = TarrGordo;
 	    TarrGordo.prefab.hideFlags |= HideFlags.HideAndDontSave;
 
-	    lookupDirector.gordoDict.Add(TarrGordo, gordoTarr);
-	    lookupDirector.gordoEntries.items.Add(gordoTarr);
+	    lookupDirector._gordoDict.Add(TarrGordo, gordoTarr);
+	    lookupDirector._gordoEntries.items.Add(gordoTarr);
 	    
 	    
 	    var gordoYolky = SRLookup.CopyPrefab(pinkGordo.prefab);
@@ -158,8 +158,8 @@ public class EntryPoint : MelonMod
 	    SlimeDefinition tabbyDef = SRLookup.Get<SlimeDefinition>("Tabby");
 	    YolkyGordo.groupType = tabbyDef.groupType;
 	    YolkyGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = tabbyDef;
-	    lookupDirector.gordoDict.Add(YolkyGordo, gordoYolky);
-	    lookupDirector.gordoEntries.items.Add(gordoYolky);
+	    lookupDirector._gordoDict.Add(YolkyGordo, gordoYolky);
+	    lookupDirector._gordoEntries.items.Add(gordoYolky);
     }
 
     public static IdentifiableType CreateIdentifiableGordo(string gordoName, Color color, Sprite icon)
