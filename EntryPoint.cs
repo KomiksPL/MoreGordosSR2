@@ -37,7 +37,6 @@ public class EntryPoint : MelonMod
     }
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
-        MelonLogger.Msg("?");
 	    if (!sceneName.Equals("GameCore") || activated)
 		    return;
 	    
