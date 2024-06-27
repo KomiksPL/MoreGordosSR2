@@ -7,7 +7,7 @@ public static class TextureUtils
     public static Texture2D LoadImage(string name)
     {
         string text = "MoreGordosMod.Images." + name + ".png";
-        Stream manifestResourceStream = EntryPoint.execAssembly.GetManifestResourceStream(text);
+        Stream manifestResourceStream = EntryPoint.ExecAssembly.GetManifestResourceStream(text);
         if (manifestResourceStream == null)
             return null;
 

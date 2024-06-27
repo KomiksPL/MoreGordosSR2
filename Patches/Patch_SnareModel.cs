@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.DataModel;
+using MelonLoader;
 
 namespace MoreGordosMod.Patches;
 
@@ -14,24 +15,24 @@ public class Patch_SnareModel
             __result = EntryPoint.TarrGordo;
             return false;
         }
-
-        switch (__instance.baitTypeId.ReferenceId)
+        switch (__instance.baitTypeId.referenceId)
         {
-            case "StrangeDiamondCraft":
+            case "IdentifiableType.StrangeDiamondCraft":
                 __result = EntryPoint.LuckyGordo;
                 return false;
-            case "DeepBrineCraft":
+            case "IdentifiableType.DeepBrineCraft":
                 __result = EntryPoint.PuddleGordo;
                 return false;
-            case "LavaDustCraft":
+            case "IdentifiableType.LavaDustCraft":
                 __result = EntryPoint.FireGordo;
                 return false;
-            case "SunSapCraft":
+            case "IdentifiableType.SunSapCraft":
                 __result = EntryPoint.YolkyGordo;
                 return false;
             default:
                 return true;
         }
+        // return true;
     }
     
 }

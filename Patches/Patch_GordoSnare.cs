@@ -62,31 +62,20 @@ public static class Patch_GordoSnare
     public static bool OnTriggerEnter(GordoSnare __instance, Collider col)
     {
         Identifiable component = col.GetComponent<Identifiable>();
-        if (!col.isTrigger && __instance.Bait == null && !__instance.HasSnaredGordo())
+        if (!col.isTrigger && !__instance.Bait && !__instance.HasSnaredGordo())
         {
             Damage ??= new Damage()
             {
                 DamageSource = Resources.FindObjectsOfTypeAll<DamageSourceDefinition>().First(),
             };
             if (!component)
-            {
                 return true;
-            }
             if (component.identType.TryCast<SlimeDefinition>()|| EntryPoint.CustomResources.Contains(component.identType))
             {
-                // MelonLogger.Msg("Test: TryCast<SlimeDefinition>");
                 __instance.AttachBait(component.identType);
                 DeathHandler.Kill(component.gameObject, Damage);
                 return false;
-                // return AttachBait(col, __instance);
-
             }
-            // if ()
-            // {
-            //     __instance.AttachBait(component.identType);
-            //     DeathHandler.Kill(component.gameObject, Damage);
-            //     return false;
-            // }
         }
         return true;
     }

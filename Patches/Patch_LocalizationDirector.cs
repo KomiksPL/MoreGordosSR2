@@ -20,8 +20,8 @@ public static class Patch_LocalizationDirector
         pedia.AddEntry("t.puddle_gordo", "Puddle Gordo");
         pedia.AddEntry("t.lucky_gordo", "Lucky Gordo");
         pedia.AddEntry("t.yolky_gordo", "Yolky Gordo");
-        StringTable UI = director.Tables["UI"];
-        UI.AddEntry("m.foodgroup.nontarrgold_slimes", "Slimes and Ranchers");
+        StringTable ui = director.Tables["UI"];
+        ui.AddEntry("m.foodgroup.nontarrgold_slimes", "Slimes and Ranchers");
     }
     public static void Postfix(LocalizationDirector __instance)
     {

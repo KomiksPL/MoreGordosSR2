@@ -21,8 +21,12 @@ public class EntryPoint : MelonMod
 	public static IdentifiableType PuddleGordo;
 	public static SlimeDefinition FireDef;
 	public static SlimeDefinition YolkyDef;
-	public static SlimeDefinition PinkDef;
-	public static Assembly execAssembly = Assembly.GetExecutingAssembly();
+	public static SlimeDefinition TabbyDef;
+
+	// public static SlimeDefinition PinkDef;
+	public static Assembly ExecAssembly = Assembly.GetExecutingAssembly();
+
+	private static bool Activated;
 
 
     public override void OnInitializeMelon()
@@ -36,25 +40,25 @@ public class EntryPoint : MelonMod
     }
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
-	    if (!sceneName.Equals("GameCore") || activated)
+	    if (!sceneName.Equals("GameCore") || Activated)
 		    return;
 	    
-	    activated = true;
+	    Activated = true;
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("StrangeDiamondCraft"));
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("DeepBrineCraft"));
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("LavaDustCraft"));
 	    EntryPoint.CustomResources.Add(SRLookup.Get<IdentifiableType>("SunSapCraft"));
 	    StringTable stringTable = SRSingleton<SystemContext>.Instance.LocalizationDirector.Tables["UI"];
 	    SRLookup.Get<IdentifiableTypeGroup>("EdibleSlimeGroup")._localizedName = new LocalizedString(stringTable.SharedData.TableCollectionNameGuid, stringTable.GetEntry("m.foodgroup.tarr").SharedEntry.Id);
-	    IdentifiableType pinkGordo = SRLookup.Get<IdentifiableType>("PinkGordo");
 	    
+	    IdentifiableType pinkGordo = SRLookup.Get<IdentifiableType>("PinkGordo");
 	    SlimeDefinition luckyDef = SRLookup.Get<SlimeDefinition>("Lucky");
 	    SlimeDefinition puddleDef = SRLookup.Get<SlimeDefinition>("Puddle");
-	    
 	    SlimeDefinition tarrDef = SRLookup.Get<SlimeDefinition>("Tarr");
+	    
 	    FireDef = SRLookup.Get<SlimeDefinition>("Fire"); 
 	    YolkyDef = SRLookup.Get<SlimeDefinition>("Yolky");
-	    PinkDef = SRLookup.Get<SlimeDefinition>("Yolky");
+	    // PinkDef = SRLookup.Get<SlimeDefinition>("Yolky");
 	    
 	    LookupDirector lookupDirector = SRSingleton<GameContext>.Instance.LookupDirector;
 	    GameObject gordoLucky = SRLookup.CopyPrefab(SRLookup.Get<GameObject>("gordoTangle"));
@@ -65,16 +69,16 @@ public class EntryPoint : MelonMod
 	    GameObject flowerObj = gordoLucky.transform.Find("Vibrating/bone_root/bone_slime/bone_core/bone_jiggle_top/bone_skin_top/Flower").gameObject;
 	    flowerObj.SetActive(false);
 	    Object.DestroyImmediate(flowerObj.GetComponent<BoxCollider>());
-    	    Object.DestroyImmediate(flowerObj.GetComponent<MeshCollider>());
+	    Object.DestroyImmediate(flowerObj.GetComponent<MeshCollider>());
 	    
-	    GameObject luckycat_coin = gordoLucky.transform.Find("Vibrating/bone_root/bone_slime/luckycat_coin_LOD1").gameObject;
-	    luckycat_coin.GetComponent<MeshFilter>().sharedMesh = SRLookup.Get<Mesh>("luckycat_coin_LOD0");
-	    luckycat_coin.GetComponent<MeshRenderer>().sharedMaterial = luckyDef.AppearancesDefault[0].Structures[2].DefaultMaterials[0];
-	    luckycat_coin.transform.position = new Vector3(0f, 3.8f, 1f);
-	    luckycat_coin.SetActive(true);
-	    GameObject ears_n_tail_LOD0 = gordoLucky.transform.Find("Vibrating/ears_n_tail_LOD0").gameObject;
-	    ears_n_tail_LOD0.GetComponent<SkinnedMeshRenderer>().sharedMaterial = luckyDef.AppearancesDefault[0].Structures[1].DefaultMaterials[0];
-	    ears_n_tail_LOD0.SetActive(true);
+	    GameObject luckyCatCoin = gordoLucky.transform.Find("Vibrating/bone_root/bone_slime/luckycat_coin_LOD1").gameObject;
+	    luckyCatCoin.GetComponent<MeshFilter>().sharedMesh = SRLookup.Get<Mesh>("luckycat_coin_LOD0");
+	    luckyCatCoin.GetComponent<MeshRenderer>().sharedMaterial = luckyDef.AppearancesDefault[0].Structures[2].DefaultMaterials[0];
+	    luckyCatCoin.transform.position = new Vector3(0f, 3.8f, 1f);
+	    luckyCatCoin.SetActive(true);
+	    GameObject arsNTailLOD0 = gordoLucky.transform.Find("Vibrating/ears_n_tail_LOD0").gameObject;
+	    arsNTailLOD0.GetComponent<SkinnedMeshRenderer>().sharedMaterial = luckyDef.AppearancesDefault[0].Structures[1].DefaultMaterials[0];
+	    arsNTailLOD0.SetActive(true);
 	    LuckyGordo.prefab = gordoLucky;
 	    LuckyGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = luckyDef;
 	    LuckyGordo.groupType = luckyDef.groupType;
@@ -103,8 +107,7 @@ public class EntryPoint : MelonMod
 	    gordoFire.transform.Find("Vibrating/slime_gordo").gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterial = FireDef.AppearancesDefault[0].Structures[0].DefaultMaterials[0];
 	    gordoFire.GetComponent<GordoFaceComponents>().SetGordoFaceComponents(FireDef);
 	    FireGordo.prefab = gordoFire;
-	    var slimePink = SRLookup.Get<SlimeDefinition>("Pink");
-	    FireGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = slimePink;
+	    FireGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = FireDef;
 	    FireGordo.localizedName = LocalizationUtil.CreateByKey("Pedia", "t.fire_gordo", false);
 	    FireGordo.prefab.GetComponent<GordoIdentifiable>().identType = FireGordo;
 	    FireGordo.prefab.hideFlags |= HideFlags.HideAndDontSave;
@@ -122,16 +125,12 @@ public class EntryPoint : MelonMod
 	    gordoTarr.transform.Find("Vibrating/slime_gordo").gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterial = tarrDef.AppearancesDefault[0].Structures[0].DefaultMaterials[0];
 	    SlimeEyeComponents component3 = tarrDef.prefab.GetComponent<SlimeEyeComponents>();
 	    SlimeMouthComponents component4 = tarrDef.prefab.GetComponent<SlimeMouthComponents>();
-	    Material material = Object.Instantiate(component3.ChompClosedEyes);
-	    Material material2 = Object.Instantiate(component4.ChompClosedMouth);
-	    material.SetTexture("_FaceTexture", TextureUtils.LoadImage("eyeTarrmellow"));
-	    material2.SetTexture("_FaceTexture", TextureUtils.LoadImage("mouthTarrmellow"));
 	    var gordoFaceComponents = gordoTarr.GetComponent<GordoFaceComponents>();
 	    gordoFaceComponents.BlinkEyes = component3.ChompClosedEyes;
-	    gordoFaceComponents.StrainEyes = material;
+	    gordoFaceComponents.StrainEyes = component3.ChompClosedEyes;
 	    gordoFaceComponents.ChompOpenMouth = component4.ChompClosedMouth;
 	    gordoFaceComponents.HappyMouth = component4.ChompClosedMouth;
-	    gordoFaceComponents.StrainMouth = material2;
+	    gordoFaceComponents.StrainMouth = component4.ChompClosedMouth;
 	    
 	    TarrGordo.prefab = gordoTarr;
 	    TarrGordo.localizedName = LocalizationUtil.CreateByKey("Pedia", "t.tarr_gordo", false);
@@ -153,9 +152,9 @@ public class EntryPoint : MelonMod
 	    YolkyGordo.prefab.GetComponent<GordoIdentifiable>().identType = YolkyGordo;
 	    YolkyGordo.prefab.hideFlags |= HideFlags.HideAndDontSave;
 
-	    SlimeDefinition tabbyDef = SRLookup.Get<SlimeDefinition>("Tabby");
-	    YolkyGordo.groupType = tabbyDef.groupType;
-	    YolkyGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = tabbyDef;
+	    TabbyDef = SRLookup.Get<SlimeDefinition>("Tabby");
+	    YolkyGordo.groupType = TabbyDef.groupType;
+	    YolkyGordo.prefab.GetComponent<GordoEat>().SlimeDefinition = YolkyDef;
 	    lookupDirector._gordoDict.Add(YolkyGordo, gordoYolky);
 	    lookupDirector._gordoEntries.items.Add(gordoYolky);
     }
@@ -169,9 +168,4 @@ public class EntryPoint : MelonMod
         identifiableType.hideFlags |= HideFlags.HideAndDontSave;
         return identifiableType;
     }
-
-   
-
-    private static bool activated = false;
-
 }

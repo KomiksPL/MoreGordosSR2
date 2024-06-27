@@ -11,14 +11,14 @@ public static class Patch_Damager
     public static void Prefix(Damager __instance, GameObject gameObj)
     {
         GordoIdentifiable component = __instance.GetComponent<GordoIdentifiable>();
-        if (component != null && component.identType == EntryPoint.TarrGordo)
+        if (component && component.identType == EntryPoint.TarrGordo)
         {
             GordoEat component2 = __instance.GetComponent<GordoEat>();
-            if (component2.EatFX != null)
+            if (component2.EatFX)
             {
                 FXHelpers.SpawnAndPlayFX(component2.EatFX, gameObj.transform.position, gameObj.transform.localRotation);
             }
-            if (component2.EatCue != null)
+            if (component2.EatCue)
             {
                 SECTR_AudioSystem.Play(component2.EatCue, gameObj.transform.position, false);
             }
