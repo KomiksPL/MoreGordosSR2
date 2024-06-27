@@ -15,7 +15,7 @@ public class Patch_SnareModel
             return false;
         }
 
-        switch (__instance.baitTypeId.name)
+        switch (__instance.baitTypeId.ReferenceId)
         {
             case "StrangeDiamondCraft":
                 __result = EntryPoint.LuckyGordo;

@@ -2,13 +2,14 @@
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.Damage;
 using Il2CppMonomiPark.SlimeRancher.Script.Util;
+using Il2CppMonomiPark.SlimeRancher.UI;
 using MelonLoader;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using Object = UnityEngine.Object;
 
-[assembly: MelonInfo(typeof(MoreGordosMod.EntryPoint), "MoreGordos", "1.0.7", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/4")]
+[assembly: MelonInfo(typeof(MoreGordosMod.EntryPoint), "MoreGordos", "1.0.8", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/4")]
 namespace MoreGordosMod;
 public class EntryPoint : MelonMod
 {
@@ -32,8 +33,6 @@ public class EntryPoint : MelonMod
         YolkyGordo = CreateIdentifiableGordo("YolkyGordo", Color.white, null);
         TarrGordo = CreateIdentifiableGordo("TarrGordo", Color.white, null);
         PuddleGordo = CreateIdentifiableGordo("PuddleGordo", Color.white, null);
-
-
     }
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {

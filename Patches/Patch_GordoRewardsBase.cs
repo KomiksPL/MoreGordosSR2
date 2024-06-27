@@ -8,9 +8,9 @@ public static class Patch_GordoRewardsBase
 {
     public static void Prefix(GordoRewardsBase __instance)
     {
-        if (__instance._eat == null) return;
+        if (!__instance._eat) return;
         if (__instance._eat.SnareModel == null) return;
-        if (__instance._eat.SnareModel.gordoTypeId == null) return;
+        if (!__instance._eat.SnareModel.gordoTypeId) return;
         
         if (__instance._eat.SnareModel.gordoTypeId == EntryPoint.FireGordo)
         {
@@ -23,9 +23,9 @@ public static class Patch_GordoRewardsBase
     }
     public static void Postfix(GordoRewardsBase __instance)
     {
-        if (__instance._eat == null) return;
+        if (!__instance._eat) return;
         if (__instance._eat.SnareModel == null) return;
-        if (__instance._eat.SnareModel.gordoTypeId == null) return;
+        if (!__instance._eat.SnareModel.gordoTypeId) return;
         if (__instance._eat.SnareModel.gordoTypeId == EntryPoint.FireGordo)
         {
             __instance._eat.SlimeDefinition.prefab = EntryPoint.PinkDef.prefab;

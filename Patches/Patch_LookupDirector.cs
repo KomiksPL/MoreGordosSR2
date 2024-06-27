@@ -9,7 +9,6 @@ public static class Patch_LookupDirector
 {
     public static void Prefix(LookupDirector __instance)
     {
-        MelonLogger.Msg("yes");
         foreach (IdentifiableTypeGroup identifiableTypeGroup in __instance._allIdentifiableTypeGroups.items)
         {
             if (!identifiableTypeGroup.name.Equals("GordoGroup")) continue;
